@@ -30,12 +30,15 @@ helloworld:
 
 Once your within the site root:
 
-```
-flingern .
+```shell
+flingern build .
 ```
 
 ## Serving for development
 
+```shell
+flingern serve . --watch
 ```
-flingern -w .
-```
+
+The `--watch` flag will watch for changes within your site's root, and will rebuild it automatically.
+

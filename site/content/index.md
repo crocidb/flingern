@@ -9,3 +9,5 @@ images:
 
 You can make beautiful and functional gallery websites just like this one.
 
+!![gallery-one]
+
