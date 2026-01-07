@@ -10,6 +10,8 @@ from chameleon import PageTemplateLoader
 from flingern import defs
 from flingern.images import ImageProcessor
 
+from flingern.markdown.gallery import GalleryExtension
+
 
 class FlingernWebsite:
     def __init__(self, path: Path, force: bool) -> None:
@@ -44,6 +46,7 @@ class FlingernWebsite:
                 section["pages"][i] = self.setup_page(page)
 
     def build(self) -> None:
+        print("Building site '%s'\n" % self.site["title"])
         # create theme structure
         theme_pub = self.pub_dir / "public"
         if theme_pub.is_dir():
@@ -59,6 +62,8 @@ class FlingernWebsite:
         for section in self.site["sections"]:
             for page in section["pages"]:
                 self.build_page(page)
+
+        print("")
 
     def setup_page(self, page_file: str) -> Dict[str, Any]:
         page_path = self.path / defs.DIR_CONTENT / page_file
@@ -81,12 +86,12 @@ class FlingernWebsite:
         page["name"] = page_name
         page["content_path"] = str(content_path)
         page["url"] = str(content_path / (page["name"] + ".html"))
-        page["content"] = markdown.markdown(page_content_md, extensions=["tables"])
+        page["content"] = markdown.markdown(page_content_md, extensions=["tables", GalleryExtension()])
 
         return page
 
     def build_page(self, page: Dict[str, Any]) -> None:
-        print("Building page %s" % page["url"])
+        print(" -> page '%s'" % page["url"])
 
         page_path = self.pub_dir / page["content_path"]
         if not page_path.is_dir():
