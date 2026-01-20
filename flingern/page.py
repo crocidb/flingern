@@ -49,13 +49,15 @@ class Page:
         if not page_path.is_dir():
             page_path.mkdir(parents=True, exist_ok=True)
 
+        page_data = self.get_data()
+
         # setup images
-        # self.website.image_processor.process_page_images(page)
+        self.website.image_processor.process_page_images(page_data)
 
         self.site_page_template = self.website.site_templates["page.html"]
-        result = self.site_page_template(site=self.website.site, page=self.get_data())
+        result = self.site_page_template(site=self.website.site, page=page_data)
 
-        result_file_path = self.website.pub_dir / self.url
+        result_file_path = self.website.pub_dir / self.complete_url
         if result_file_path.is_file():
             result_file_path.unlink()
 
@@ -64,6 +66,7 @@ class Page:
     def get_data(self) -> dict[str, Any]:
         data = copy.deepcopy(self.page)
         data["url"] = str(self.complete_url)
-        pprint(data)
+        data["content"] = self.content
+        data["content_path"] = str(self.content_path)
         return data
 

@@ -10,6 +10,9 @@ class Section:
         for page in self.data["pages"]:
             self.pages.append(Page(page, website))
 
+        # update section data with processed page info for templates (menu)
+        self.data["pages"] = [{"url": p.complete_url, "menu": p.page["menu"]} for p in self.pages]
+
     def build(self):
         for page in self.pages:
             page.build()

@@ -33,4 +33,3 @@ class FlingernWebsiteData:
         # loading templates
         self.site_templates = PageTemplateLoader(str(Path(defs.flingern_directory) / defs.DIR_THEME))
 
-        pprint.pprint(self.site)
