@@ -12,18 +12,19 @@ galleries:
 
 Pages can contain several galleries. You have to define them on the page metadata:
 
-```markdown
+```yaml
 galleries:
-    - name: gallery-one
+    - name: gallery1
       images:
         - docs/images/*.jpg
 ```
 
 Then add to the page like this:
 
-<!-- ```markdown -->
-<!-- !![gallery-one] -->
-<!-- ``` -->
+```markdown
+!![gallery1]
+```
+
 And that's how it will look like:
 
 !![gallery1]

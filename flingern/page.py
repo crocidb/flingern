@@ -27,7 +27,11 @@ class Page:
         self.complete_url = str(self.content_path / (self.name + ".html"))
         self.url = self.content_path if self.name == "index" else self.complete_url
 
-        self.content = markdown.markdown(self.page["markdown"], extensions=["tables", GalleryExtension()])
+        self.content = markdown.markdown(
+            self.page["markdown"],
+            extensions=["tables", "fenced_code", "codehilite", GalleryExtension()],
+            extension_configs={"codehilite": {"css_class": "highlight"}}
+        )
 
     def __loadfile(self, filepath) -> dict[str, Any]:
         page_path = self.website.path / defs.DIR_CONTENT / filepath
