@@ -23,11 +23,3 @@ class GalleryExtension(Extension):
     def extendMarkdown(self, md):
         md.preprocessors.register(GalleryPreprocessor(md), 'gallery', 25)
 
-
-def make_markdown():
-    return markdown.Markdown(
-        extensions=[
-            "tables",
-            GalleryExtension(),
-        ]
-    )
