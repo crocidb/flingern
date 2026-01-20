@@ -10,23 +10,32 @@ class ImageProcessor:
         self.public_dir = public_dir
         self.config = config
 
-    def process_page_images(self, page: Dict[str, Any]) -> None:
-        images: List[Dict[str, str]] = []
+    def process_galleries(self, page: Dict[str, Any]) -> None:
+        if "galleries" not in page:
+            page["galleries"] = []
+            return
 
-        if "images" in page:
-            if len(page["images"]) == 0 or not isinstance(page["images"][0], str):
-                return
+        processed_galleries: List[Dict[str, Any]] = []
 
-            for img_pattern in page["images"]:
-                base_dir = self.content_root / page["content_path"]
-                if base_dir.exists():
-                    imgs = list(base_dir.glob(img_pattern))
-                    for i in imgs:
-                        result = self.process_image(i)
-                        if result:
-                            images.append(result)
+        for gallery in page["galleries"]:
+            processed_gallery: Dict[str, Any] = {
+                "name": gallery.get("name", ""),
+                "images": []
+            }
 
-        page["images"] = images
+            if "images" in gallery:
+                for img_pattern in gallery["images"]:
+                    base_dir = self.content_root / page["content_path"]
+                    if base_dir.exists():
+                        imgs = list(base_dir.glob(img_pattern))
+                        for i in imgs:
+                            result = self.process_image(i)
+                            if result:
+                                processed_gallery["images"].append(result)
+
+            processed_galleries.append(processed_gallery)
+
+        page["galleries"] = processed_galleries
 
     def process_image(self, original_image_path: Path) -> Optional[Dict[str, str]]:
         try:

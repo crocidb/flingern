@@ -2,29 +2,9 @@
     <h1>${page.title}</h1>
     <div id="content" tal:content="structure page.content">
     </div>
-    <div id="gallery" class="d-none">
-    <a tal:repeat="img page.images" href="${site.url}/${img.path}" data-toggle="lightbox" data-gallery="example-gallery">
-      <img src="${site.url}/${img.thumb}" class="img-fluid img-item" alt="...">
+    <div tal:repeat="gallery page.galleries" class="gallery-images d-none" data-gallery="${gallery.name}">
+        <a tal:repeat="img gallery.images" href="${site.url}/${img.path}" data-toggle="lightbox" data-gallery="${gallery.name}">
+            <img src="${site.url}/${img.thumb}" class="img-fluid img-item" alt="...">
         </a>
-    </div>
-    <div class="container text-center d-none" id="gallery-mobile">
-        <div class="row align-items-start">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-        </div>
-    </div>
-    <div class="container text-center d-none" id="gallery-desktop">
-        <div class="row align-items-start">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-        </div>
     </div>
 </div>

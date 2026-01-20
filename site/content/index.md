@@ -5,8 +5,6 @@ galleries:
     - name: gallery-one
       images:
         - flingern/*.jpg
-images: 
-      - flingern/*.jpg
 ---
 
 **flingern** is a static photography gallery website generator written in python.

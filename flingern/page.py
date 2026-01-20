@@ -51,8 +51,8 @@ class Page:
 
         page_data = self.get_data()
 
-        # setup images
-        self.website.image_processor.process_page_images(page_data)
+        # process gallery images
+        self.website.image_processor.process_galleries(page_data)
 
         self.site_page_template = self.website.site_templates["page.html"]
         result = self.site_page_template(site=self.website.site, page=page_data)

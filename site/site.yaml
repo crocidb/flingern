@@ -1,7 +1,7 @@
 title: "flingern"
 description: "static art gallery website generator"
 author: "Bruno Croci"
-url: "https://flingern.croci.art/"
+url: "http://maelle.sweepick.games:8089"
 
 images_max_height: 1024
 images_quality: 65
@@ -20,3 +20,4 @@ sections:
     pages:
       - "docs/gettingstarted.md"
       - "docs/elements.md"
+      - "docs/galleries.md"
