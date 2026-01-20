@@ -11,6 +11,10 @@ thumbs_quality: 30
 images_border: 150
 thumbs_border: 0
 
+gallery_columns_desktop: 4
+gallery_columns_mobile: 2
+gallery_breakpoint: 1200
+
 sections:
   - title: "Main"
     pages:

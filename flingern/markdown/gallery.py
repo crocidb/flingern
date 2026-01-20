@@ -12,7 +12,7 @@ class GalleryPreprocessor(Preprocessor):
         for line in lines:
             def repl(m):
                 name = m.group('name')
-                return f'<div class="gallery-placeholder" data-gallery="{name}"></div>'
+                return f'<div class="gallery-object" data-gallery="{name}"></div>'
 
             new_line = self.RE.sub(repl, line)
             new_lines.append(new_line)

@@ -1,2 +1,9 @@
+<script type="text/javascript">
+    window.FLINGERN_CONFIG = {
+        galleryColumnsDesktop: ${site.gallery_columns_desktop or 4},
+        galleryColumnsMobile: ${site.gallery_columns_mobile or 2},
+        galleryBreakpoint: ${site.gallery_breakpoint or 1200}
+    };
+</script>
 <script type="text/javascript" src="${site.url}/public/gallery.js"></script>
 <script src="${site.url}/public/index.bundle.min.js"></script>

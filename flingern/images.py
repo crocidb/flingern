@@ -75,33 +75,44 @@ class ImageProcessor:
             except FileNotFoundError:
                 pass
 
-        if should_rebuild_image or should_rebuild_thumb:
-            with Image.open(original_image_path) as im:
-                ratio = im.size[0] / im.size[1]
+        thumb_width = 0
+        thumb_height = 0
 
-                if should_rebuild_image:
-                    dimensions = (
-                        int(self.config.get("images_max_height", 800) * ratio),
-                        self.config.get("images_max_height", 800),
-                    )
-                    nim = im.resize(dimensions)
-                    if "images_border" in self.config:
-                        nim = ImageOps.expand(nim, border=self.config["images_border"], fill="white")
-                    nim.save(image_file, "JPEG", optimize=True, quality=self.config.get("images_quality", 85))
+        with Image.open(original_image_path) as im:
+            ratio = im.size[0] / im.size[1]
 
-                if should_rebuild_thumb:
-                    dimensions = (
-                        self.config.get("thumbs_max_width", 300),
-                        int(self.config.get("thumbs_max_width", 300) / ratio),
-                    )
-                    nim = im.resize(dimensions)
-                    if "thumbs_border" in self.config:
-                        nim = ImageOps.expand(nim, border=self.config["thumbs_border"], fill="white")
-                    nim.save(image_thumb_file, "JPEG", optimize=True, quality=self.config.get("thumbs_quality", 85))
+            # calculate thumbnail dimensions
+            thumb_width = self.config.get("thumbs_max_width", 300)
+            thumb_height = int(thumb_width / ratio)
+            if "thumbs_border" in self.config:
+                thumb_width += self.config["thumbs_border"] * 2
+                thumb_height += self.config["thumbs_border"] * 2
+
+            if should_rebuild_image:
+                dimensions = (
+                    int(self.config.get("images_max_height", 800) * ratio),
+                    self.config.get("images_max_height", 800),
+                )
+                nim = im.resize(dimensions)
+                if "images_border" in self.config:
+                    nim = ImageOps.expand(nim, border=self.config["images_border"], fill="white")
+                nim.save(image_file, "JPEG", optimize=True, quality=self.config.get("images_quality", 85))
+
+            if should_rebuild_thumb:
+                dimensions = (
+                    self.config.get("thumbs_max_width", 300),
+                    int(self.config.get("thumbs_max_width", 300) / ratio),
+                )
+                nim = im.resize(dimensions)
+                if "thumbs_border" in self.config:
+                    nim = ImageOps.expand(nim, border=self.config["thumbs_border"], fill="white")
+                nim.save(image_thumb_file, "JPEG", optimize=True, quality=self.config.get("thumbs_quality", 85))
 
         info = {
             "path": str(image_file.relative_to(self.public_dir)),
             "thumb": str(image_thumb_file.relative_to(self.public_dir)),
+            "thumb_width": thumb_width,
+            "thumb_height": thumb_height,
         }
 
         return info
