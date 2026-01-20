@@ -1,6 +1,10 @@
 ---
 title: "Static photography gallery website generator"
 menu: "Home"
+galleries:
+    - name: gallery-one
+      images:
+        - flingern/*.jpg
 images: 
       - flingern/*.jpg
 ---
