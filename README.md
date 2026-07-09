@@ -41,10 +41,10 @@ flingern serve my-site --watch
 
 # Development
 
-*flingern* uses `nix-shell` to build a reliable development shell:
+*flingern* uses a Nix development shell to build a reliable development shell:
 
 ```shell
-nix-shell
+nix develop
 ```
 
 Then sync dependencies and run with **uv**:
