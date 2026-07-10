@@ -89,11 +89,15 @@ class ImageProcessor:
                 thumb_height += self.config["thumbs_border"] * 2
 
             if should_rebuild_image:
-                dimensions = (
-                    int(self.config.get("images_max_height", 800) * ratio),
-                    self.config.get("images_max_height", 800),
-                )
-                nim = im.resize(dimensions)
+                max_height = self.config.get("images_max_height", 800)
+                if im.size[1] > max_height:
+                    dimensions = (
+                        int(max_height * ratio),
+                        max_height,
+                    )
+                    nim = im.resize(dimensions)
+                else:
+                    nim = im.copy()
                 if "images_border" in self.config:
                     nim = ImageOps.expand(nim, border=self.config["images_border"], fill="white")
                 nim.save(image_file, "JPEG", optimize=True, quality=self.config.get("images_quality", 85))
