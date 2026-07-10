@@ -1,8 +1,15 @@
 <div class="menu">
-    <div tal:repeat="sec site.sections">
-      <h1>${sec.title}</h1>
-      <ul>
-        <li tal:repeat="p sec.pages"><a href="${site.url}/${p.url}">${p.menu}</a></li>
-      </ul>
+    <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-content">
+      <div tal:repeat="sec site.sections">
+        <h1>${sec.title}</h1>
+        <ul>
+          <li tal:repeat="p sec.pages"><a href="${site.url}/${p.url}">${p.menu}</a></li>
+        </ul>
+      </div>
     </div>
 </div>

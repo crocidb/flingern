@@ -51,13 +51,14 @@ pre code {
 }
 
 #header h1 {
-  font-size: 3em;
+  font-size: 2.7em;
   margin-bottom: 5px;
   margin-top: 30px;
 }
 
 #header p {
-  margin-top: 5px;
+  margin-top: 0px;
+  font-size: .9rem;
 }
 
 /* Menu */
@@ -98,6 +99,50 @@ pre code {
   text-align: center;
 }
 
+/* Hamburger menu toggle (mobile) */
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 22px;
+  margin: 15px auto 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--secondary-color);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.menu-content {
+  display: none;
+}
+
+.menu.open .menu-content {
+  display: block;
+}
+
+.menu.open .menu-toggle span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.menu.open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu.open .menu-toggle span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
 /* Page */
 
 #page,
@@ -135,7 +180,7 @@ pre code {
   font-size: 1.1em;
 }
 
-#page table td {
+#page table c/7979\f3f/bcbc{
   padding: 5px;
 }
 
@@ -143,6 +188,7 @@ pre code {
   text-align: justify;
   padding-right: 0.7rem;
   padding-left: 0.7rem;
+  margin-bottom: 50px;
 }
 
 #page .img-item {
@@ -192,6 +238,7 @@ pre code {
 }
 
 .footer p {
+  font-size: .9rem;
   margin: 0;
 }
 
@@ -217,6 +264,14 @@ pre code {
   .menu {
     flex: 0 0 20%;
     padding-top: 0.1em;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .menu-content {
+    display: block !important;
   }
 
   .menu ul li {

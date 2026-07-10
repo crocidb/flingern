@@ -6,4 +6,16 @@
     };
 </script>
 <script type="text/javascript" src="${site.url}/public/gallery.js"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggle = document.querySelector('.menu-toggle');
+        var menu = document.querySelector('.menu');
+        if (toggle && menu) {
+            toggle.addEventListener('click', function() {
+                var isOpen = menu.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+        }
+    });
+</script>
 <script src="${site.url}/public/index.bundle.min.js"></script>
