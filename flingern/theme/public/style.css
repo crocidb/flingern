@@ -180,13 +180,13 @@ pre code {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding-left: 2.5rem;
+    max-width: 1500px;
+    margin: 0 auto;
     padding-bottom: 10px;
   }
 
   .menu {
-    flex: 0 0 auto;
-    width: 400px;
+    flex: 0 0 20%;
     padding-top: 0.1em;
   }
 
