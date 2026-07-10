@@ -1,3 +1,5 @@
+import copy
+
 from flingern.page import Page
 from flingern.websitedata import FlingernWebsiteData
 
@@ -20,6 +22,9 @@ class Section:
 
 def create_sections(section_table, website: FlingernWebsiteData) -> list[Section]:
     sections = []
+
+    section_table = copy.deepcopy(section_table)
+    website.site["sections"] = section_table
 
     for section in section_table:
         sections.append(Section(section, website))

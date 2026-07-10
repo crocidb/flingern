@@ -1,3 +1,4 @@
+import copy
 import pprint
 from flingern.websitedata import FlingernWebsiteData
 import datetime
@@ -21,7 +22,8 @@ class FlingernWebsite:
 
         print(f"Processing website '{self.data.site['title']}'\n")
 
-        self.sections = sections.create_sections(self.data.site["sections"], self.data)
+        self._original_sections = copy.deepcopy(self.data.site["sections"])
+        self.sections = sections.create_sections(self._original_sections, self.data)
 
     def build(self) -> None:
         # copy theme public assets
@@ -29,6 +31,8 @@ class FlingernWebsite:
         if theme_pub.is_dir():
             shutil.rmtree(theme_pub)
         shutil.copytree(Path(defs.flingern_directory) / defs.DIR_THEME_PUBLIC, theme_pub)
+
+        self.sections = sections.create_sections(self._original_sections, self.data)
 
         for section in self.sections:
             section.build()
