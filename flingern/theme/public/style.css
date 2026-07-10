@@ -145,8 +145,37 @@ pre code {
   padding-left: 0.7rem;
 }
 
-.img-item {
-  margin-bottom: 0.7rem;
+#page .img-item {
+  margin-bottom: 0;
+}
+
+#page .gallery-object .col > a {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#page .gallery-object .col > a:last-child {
+  margin-bottom: 0;
+}
+
+#page .gallery-object .container {
+  padding: 0;
+  margin: 0;
+}
+
+#page .gallery-object .row {
+  --bs-gutter-x: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#page .gallery-object .col {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+#page .gallery-object .col:last-child {
+  padding-right: 0;
 }
 
 /* Footer */
@@ -221,8 +250,7 @@ pre code {
 
 /* galery */
 .gallery-object {
-  background-color: #AAAAAA;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
