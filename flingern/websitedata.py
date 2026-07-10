@@ -15,7 +15,7 @@ class FlingernWebsiteData:
         self.path = path
         self.conf = self.path / "site.yaml"
 
-        with self.conf.open("r") as f:
+        with self.conf.open("r", encoding="utf-8") as f:
             self.site: Dict[str, Any] = yaml.safe_load(f)
 
         self.site["year"] = datetime.datetime.today().year

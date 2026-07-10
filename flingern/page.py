@@ -36,7 +36,7 @@ class Page:
     def __loadfile(self, filepath) -> dict[str, Any]:
         page_path = self.website.path / defs.DIR_CONTENT / filepath
 
-        page_content = page_path.read_text()
+        page_content = page_path.read_text(encoding="utf-8")
         content = page_content.split("---")
         page_content_md = "---".join(content[2:])
 
@@ -65,7 +65,7 @@ class Page:
         if result_file_path.is_file():
             result_file_path.unlink()
 
-        result_file_path.write_text(result)
+        result_file_path.write_text(result, encoding="utf-8")
 
     def get_data(self) -> dict[str, Any]:
         data = copy.deepcopy(self.page)
